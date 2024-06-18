@@ -9,6 +9,9 @@ import (
 
 func TestGetInstance(t *testing.T) {
 	assert.Equal(t, GetInstance(), GetInstance())
+    /* if GetInstance() != GetInstance() {
+        t.Errorf("test fail")
+    } */
 }
 
 func BenchmarkGetInstanceParallel(b *testing.B) {

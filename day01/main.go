@@ -4,14 +4,18 @@ import (
     "sync"
 )
 
-type Singleton struct{}
+type Singleton struct{
+    aa int
+    bb func(int) int
+}
 
 var singleton *Singleton
 
 
 
 func GetInstance() *Singleton {
-	return singleton
+    /* return &Singleton{aa: 1, bb: func(i int) int {return i}} */
+    return singleton
 }
 
 func init() {
@@ -23,6 +27,7 @@ var (
 	once          = &sync.Once{}
 )
 
+/*
 // GetLazyInstance 懒汉式
 func GetLazyInstance() *Singleton {
 	if lazySingleton == nil {
@@ -31,6 +36,18 @@ func GetLazyInstance() *Singleton {
 		})
 	}
 	return lazySingleton
+} */
+
+
+
+func GetLazyInstance() *Singleton {
+    if lazySingleton == nil {
+        once.Do(func(){
+            lazySingleton = &Singleton{}
+        })
+    }
+    return lazySingleton
 }
+
 
 
