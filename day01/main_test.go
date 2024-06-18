@@ -4,14 +4,14 @@ import (
 	"testing"
 
 
-	"github.com/stretchr/testify/assert"
+	_ "github.com/stretchr/testify/assert"
 )
 
 func TestGetInstance(t *testing.T) {
-	assert.Equal(t, GetInstance(), GetInstance())
-    /* if GetInstance() != GetInstance() {
+	/* assert.Equal(t, GetInstance(), GetInstance()) */
+    if GetInstance() != GetInstance() {
         t.Errorf("test fail")
-    } */
+    }
 }
 
 func BenchmarkGetInstanceParallel(b *testing.B) {
@@ -25,7 +25,9 @@ func BenchmarkGetInstanceParallel(b *testing.B) {
 }
 
 func TestLazyGetInstance(t *testing.T) {
-	assert.Equal(t, GetLazyInstance(), GetLazyInstance())
+    if GetLazyInstance() != GetLazyInstance() {
+        t.Errorf("test fail")
+    }
 }
 
 func BenchmarkLazyGetInstanceParallel(b *testing.B) {
